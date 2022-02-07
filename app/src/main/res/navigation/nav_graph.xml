@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.chernyshev.newsletterapp.presentation.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/navigate_home"
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_to_right"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/navigateToLanguageSelector"
+            app:destination="@id/languageSelectorFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/webViewFragment"
+        android:name="com.chernyshev.newsletterapp.presentation.webview.WebViewFragment"
+        android:label="WebViewFragment"
+        tools:layout="@layout/fragment_webview">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.chernyshev.newsletterapp.presentation.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_newsDialog"
+            app:destination="@id/newsDialogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/languageSelectorFragment"
+        android:name="com.chernyshev.newsletterapp.presentation.language_selector.LanguageSelectorFragment"
+        android:label="LanguageSelectorFragment"
+        tools:layout="@layout/fragment_language_selector">
+        <action
+            android:id="@+id/action_languageSelectorFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/newsDialogFragment"
+        android:name="com.chernyshev.newsletterapp.presentation.home.news_dialog.NewsDialogFragment"
+        android:label="NewsDialogFragment"
+        tools:layout="@layout/fragment_news_dialog">
+        <argument
+            android:name="newsItem"
+            app:argType="com.chernyshev.newsletterapp.domain.entity.NewsItem" />
+        <action
+            android:id="@+id/action_newsDialogFragment_to_webViewFragment"
+            app:destination="@id/webViewFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_to_right" />
+    </dialog>
+
+</navigation>

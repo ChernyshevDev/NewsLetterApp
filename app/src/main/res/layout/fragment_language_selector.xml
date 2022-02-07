@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/news_background"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.chernyshev.newsletterapp.presentation.views.ToolbarView
+        style="@style/NewsToolbar"
+        app:backVisible="false" />
+
+    <TextView
+        style="@style/Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/unit_10"
+        android:text="@string/choose_news_language" />
+
+    <TextView
+        android:id="@+id/english"
+        style="@style/CommonButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/unit_4"
+        android:layout_marginTop="@dimen/unit_10"
+        android:text="@string/language_english" />
+
+    <TextView
+        android:id="@+id/russian"
+        style="@style/CommonButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/unit_4"
+        android:layout_marginTop="@dimen/unit_5"
+        android:text="@string/language_russian" />
+
+    <TextView
+        android:id="@+id/deutsch"
+        style="@style/CommonButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/unit_4"
+        android:layout_marginTop="@dimen/unit_5"
+        android:text="@string/language_deutsch" />
+</LinearLayout>

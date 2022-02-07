@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NewsLetterApp</string>
+    <string name="not_implemented">Feature not implemented yet!</string>
+    <string name="unknown_error">Unknown error occurred :(</string>
+    <string name="read_more">Read More</string>
+    <string name="choose_news_language">Choose news language:</string>
+    <string name="language_english">English</string>
+    <string name="language_russian">Russian</string>
+    <string name="language_deutsch">Deutsch</string>
+</resources>
