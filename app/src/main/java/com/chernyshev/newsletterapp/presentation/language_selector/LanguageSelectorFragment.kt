@@ -29,7 +29,7 @@ class LanguageSelectorFragment : BaseFragment(R.layout.fragment_language_selecto
         viewModel.subscribeToCommand(viewLifecycleOwner) { command ->
             when (command) {
                 is Command.NavigateHome -> navController
-                    .navigate(LanguageSelectorFragmentDirections.actionLanguageSelectorFragmentToHomeFragment())
+                    .navigate(LanguageSelectorFragmentDirections.navigateHome())
             }
         }
     }

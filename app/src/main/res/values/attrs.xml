@@ -2,6 +2,6 @@
 <resources>
     <declare-styleable name="ToolbarView">
         <attr name="backVisible" format="boolean" />
-        <attr name="languageSelectorVisible" format="boolean"  />
+        <attr name="languageSelectorVisible" format="boolean" />
     </declare-styleable>
 </resources>

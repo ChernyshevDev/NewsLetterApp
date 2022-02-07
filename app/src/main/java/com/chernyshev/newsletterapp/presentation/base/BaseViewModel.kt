@@ -4,10 +4,13 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.Job
 
 abstract class BaseViewModel<ViewState : BaseViewState, Event : BaseEvent, Command : BaseCommand>(
     initialState: ViewState
 ) : ViewModel() {
+    val parentJob = Job()
+
     private val _stateLiveData = MutableLiveData(initialState)
     private val stateLiveData = _stateLiveData as LiveData<ViewState>
 

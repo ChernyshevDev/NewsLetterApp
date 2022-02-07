@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="@dimen/unit_1"
     android:layout_marginHorizontal="@dimen/unit_4"
-    android:elevation="@dimen/default_elevation"
-    android:background="@drawable/bg_white_ripple">
+    android:layout_marginVertical="@dimen/unit_1"
+    android:background="@drawable/bg_white_ripple"
+    android:elevation="@dimen/default_elevation">
 
     <ImageView
         android:id="@+id/image"

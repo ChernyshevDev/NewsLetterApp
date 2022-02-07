@@ -43,7 +43,7 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             title.text = item.title.tripToFitTitleLine()
             subtitle.text = item.description.trimToFitDescriptionLength()
             image.loadImage(item.image)
-            binding.root.setOnClickListener {
+            root.setOnClickListener {
                 onItemClick?.invoke(item)
             }
         }

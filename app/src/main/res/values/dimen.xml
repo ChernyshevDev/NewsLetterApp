@@ -8,7 +8,6 @@
     <dimen name="unit_6">24dp</dimen>
     <dimen name="unit_8">32dp</dimen>
     <dimen name="unit_10">40dp</dimen>
-    <dimen name="unit_12">48dp</dimen>
 
     <dimen name="default_elevation">2dp</dimen>
     <dimen name="default_corner_radius">16dp</dimen>

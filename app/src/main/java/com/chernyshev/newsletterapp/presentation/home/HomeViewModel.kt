@@ -3,10 +3,8 @@ package com.chernyshev.newsletterapp.presentation.home
 import androidx.lifecycle.viewModelScope
 import com.chernyshev.newsletterapp.domain.usecase.NewsUseCase
 import com.chernyshev.newsletterapp.presentation.base.BaseViewModel
-import com.chernyshev.newsletterapp.presentation.base.OperationResult
 import com.chernyshev.newsletterapp.presentation.utils.extensions.launch
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -16,19 +14,16 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val newsUseCase: NewsUseCase
 ) : BaseViewModel<ViewState, Event, Command>(ViewState()) {
-    private val job = Job()
-
     override fun onReduceState(event: Event): ViewState {
         return when (event) {
-            Event.PausedFragment -> {
-                job.cancelChildren()
-                state
-            }
             Event.ResumedFragment -> {
                 launch { fetchNews() }
                 state.copy(isLoading = true)
             }
-            is Event.ClickedNewsItem -> state.copy(command = Command.ShowDescriptionDialog(event.newsItem))
+            Event.PausedFragment -> {
+                parentJob.cancelChildren()
+                state
+            }
             is Event.ReceivedNews -> {
                 launch { startTimer() }
                 state.copy(
@@ -37,7 +32,8 @@ class HomeViewModel @Inject constructor(
                     command = Command.UpdateNews(event.news)
                 )
             }
-            Event.Passed10Seconds -> {
+            is Event.ClickedNewsItem -> state.copy(command = Command.ShowDescriptionDialog(event.newsItem))
+            Event.Passed10Seconds, Event.ChangedLanguage -> {
                 launch { fetchNews() }
                 state
             }
@@ -48,24 +44,22 @@ class HomeViewModel @Inject constructor(
                     command = Command.DisplayError(event.errorMessage)
                 )
             }
-            is Event.ChangedLanguage -> {
-                job.cancelChildren()
-                launch { fetchNews() }
-                state
-            }
         }
     }
 
     private suspend fun fetchNews() {
-        when (val result = newsUseCase.getTopNews()) {
-            is OperationResult.ResultSuccess -> sendEvent(Event.ReceivedNews(result.result))
-            is OperationResult.ResultError -> sendEvent(Event.ReceivedError(result.error))
-        }
+        newsUseCase.getTopNews()
+            .onSuccess {
+                sendEvent(Event.ReceivedNews(it))
+            }
+            .onError {
+                sendEvent(Event.ReceivedError(it))
+            }
     }
 
     private fun startTimer() {
-        job.cancelChildren()
-        viewModelScope.launch(job) {
+        parentJob.cancelChildren()
+        viewModelScope.launch(parentJob) {
             delay(10_000)
             sendEvent(Event.Passed10Seconds)
         }

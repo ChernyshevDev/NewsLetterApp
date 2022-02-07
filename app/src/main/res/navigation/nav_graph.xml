@@ -17,10 +17,17 @@
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_to_right"
+            app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/navigateToLanguageSelector"
-            app:destination="@id/languageSelectorFragment" />
+            app:destination="@id/languageSelectorFragment"
+            app:enterAnim="@anim/slide_from_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_to_right"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
@@ -39,7 +46,7 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_newsDialog"
+            android:id="@+id/showNewsDialog"
             app:destination="@id/newsDialogFragment" />
     </fragment>
 
@@ -49,7 +56,7 @@
         android:label="LanguageSelectorFragment"
         tools:layout="@layout/fragment_language_selector">
         <action
-            android:id="@+id/action_languageSelectorFragment_to_homeFragment"
+            android:id="@+id/navigateHome"
             app:destination="@id/homeFragment" />
     </fragment>
 
@@ -62,7 +69,7 @@
             android:name="newsItem"
             app:argType="com.chernyshev.newsletterapp.domain.entity.NewsItem" />
         <action
-            android:id="@+id/action_newsDialogFragment_to_webViewFragment"
+            android:id="@+id/navigateToWebView"
             app:destination="@id/webViewFragment"
             app:enterAnim="@anim/slide_from_right"
             app:exitAnim="@anim/fade_out"

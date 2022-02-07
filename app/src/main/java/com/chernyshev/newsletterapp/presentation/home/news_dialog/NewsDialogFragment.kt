@@ -1,10 +1,9 @@
 package com.chernyshev.newsletterapp.presentation.home.news_dialog
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -28,7 +27,12 @@ class NewsDialogFragment : DialogFragment(R.layout.fragment_news_dialog) {
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT
             )
-            setBackgroundDrawable(requireContext().getDrawable(R.drawable.color_transparent))
+            setBackgroundDrawable(
+                AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.color_transparent
+                )
+            )
         }
     }
 
@@ -48,9 +52,7 @@ class NewsDialogFragment : DialogFragment(R.layout.fragment_news_dialog) {
 
     private fun navigateToWebView() {
         findNavController().navigate(
-            NewsDialogFragmentDirections.actionNewsDialogFragmentToWebViewFragment(
-                args.newsItem.url
-            )
+            NewsDialogFragmentDirections.navigateToWebView(args.newsItem.url)
         )
     }
 }

@@ -1,7 +1,5 @@
 package com.chernyshev.newsletterapp.presentation.home
 
-import android.os.Bundle
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.chernyshev.newsletterapp.R
@@ -31,8 +29,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         newsAdapter.setOnItemClick {
             viewModel.sendEvent(Event.ClickedNewsItem(it))
         }
-        toolbar.onLanguageChanged { language ->
-            viewModel.sendEvent(Event.ChangedLanguage(language))
+        toolbar.onLanguageChanged {
+            viewModel.sendEvent(Event.ChangedLanguage)
         }
     }
 
@@ -48,7 +46,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 )
                 is Command.UpdateNews -> newsAdapter.updateItems(command.news)
                 is Command.ShowDescriptionDialog -> navController.navigate(
-                    HomeFragmentDirections.actionNewsDialog(
+                    HomeFragmentDirections.showNewsDialog(
                         command.newsItem
                     )
                 )
@@ -60,15 +58,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         }
     }
 
-    private fun displayShimmerLoading(shouldDisplay: Boolean) = with(binding) {
+    private fun displayShimmerLoading(isLoadingVisible: Boolean) = with(binding) {
         shimmer.apply {
-            if (shouldDisplay) {
+            if (isLoadingVisible) {
                 showShimmer(true)
             } else {
                 hideShimmer()
             }
         }
-        fakeNewsLayout.root.isVisible = shouldDisplay
-        newsRecycler.isVisible = !shouldDisplay
+        fakeNewsLayout.root.isVisible = isLoadingVisible
+        newsRecycler.isVisible = !isLoadingVisible
     }
 }

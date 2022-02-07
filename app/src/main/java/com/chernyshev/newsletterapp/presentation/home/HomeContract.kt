@@ -19,10 +19,10 @@ data class ViewState(
 sealed class Event : BaseEvent {
     object ResumedFragment : Event()
     object PausedFragment : Event()
-    data class ReceivedNews(val news: List<NewsItem>) : Event()
-    data class ClickedNewsItem(val newsItem: NewsItem) : Event()
-    data class ChangedLanguage(val language: Language) : Event()
     object Passed10Seconds : Event()
+    data class ClickedNewsItem(val newsItem: NewsItem) : Event()
+    object ChangedLanguage : Event()
+    data class ReceivedNews(val news: List<NewsItem>) : Event()
     data class ReceivedError(val errorMessage: String?) : Event()
 }
 
