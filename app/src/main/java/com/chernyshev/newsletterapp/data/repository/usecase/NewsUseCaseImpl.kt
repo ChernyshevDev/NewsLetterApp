@@ -15,7 +15,7 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 private const val NEWS_BASE_URL = "https://gnews.io"
-private const val API_KEY = "22e66bc9242207fc991b446b36fe01c8"
+private const val API_KEY = "a9c0ac5c6a23d32f92f1eeaa92e8614a"
 
 class NewsUseCaseImpl(private val userRepository: UserRepository) : NewsUseCase {
 
